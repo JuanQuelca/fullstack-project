@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TASK MANAGER</title>
+    <style>
+        body{
+          font-family: Arial, sans-serif;
+          padding: 30px;
+          background-color: #f4f6f8;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 80vh;
+          margin: 0; 
+        }
+        .container {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        width: 500px;
+        }
+
+        h1{
+            text-align: center;
+            color: rgb(0, 102, 255);
+            margin-bottom: 20px;
+        }
+        .input-group{
+            display: flex;
+            gap: 10px; /* espacio entre lineas*/
+        }
+        input{
+            padding: 10px;
+            /*width: 250px;*/
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+        button{
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #ffffff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover{
+            background-color: #0056b3;
+        }
+        ul{
+            list-style: none;
+            padding: 10px;
+            margin-top: 20px;
+                        
+        }
+        li{
+            background: #f1f1f1;
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .delete-btn{
+            background: #e74c3c;
+        }
+        .delete-btn:hover {
+            background: #c0392b;
+        }
+
+    </style>
+</head>
+<body>
+        <div class="container">
+            <h1>Administrador de Tareas</h1>
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Nueva tarea...">
+                <button id="addTaskBtn">Agregar tarea</button>
+                
+            </div>
+            <ul id="taskList"></ul>
+        </div>
+
+<script>
+    const input = document.querySelector("#taskInput");
+    const button = document.querySelector("#addTaskBtn");
+    const list = document.querySelector("#taskList");
+
+    button.addEventListener("click", function() {
+        const taskText = input.value.trim();
+        if (taskText === '') return;
+        const li = document.createElement('li');
+        li.textContent = taskText;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'X';
+        deleteBtn.className = 'delete-btn';
+        deleteBtn.onclick = () => li.remove();
+
+        li.appendChild(deleteBtn);
+        document.getElementById('taskList').appendChild(li);
+
+        input.value = '';
+
+    });
+  
+</script>
+</body>
+</html>
